@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import AddCar from './components/car-add/CarAdd';
 import Header from './components/header/Header';
-import CarList from './components/car-list/CarList';
+import CarPage from './components/car-page/CarPage';
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
 
           <Route path='/' element={<Home />}/>
           <Route path='/add-car' element={<AddCar />}/>
-          <Route path='/car/all' element={<CarList />}/>
+          <Route path='/car/all' element={<CarPage />}/>
 
         </Routes>
 

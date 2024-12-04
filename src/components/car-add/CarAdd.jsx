@@ -1,77 +1,81 @@
-import './CarAdd.css';
+import styles from './CarAdd.module.css';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+import { useForm } from '../../hooks/useForm';
+import { useAddNewCar } from '../../hooks/cars-hooks';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
 
-export default function AddCar() {
+
+const initialValues = {
+    name: '',
+    imageUrl: '',
+    description: ''
+};
+
+
+export default function CarAdd() {
+
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const addNewcar = useAddNewCar();
+
+    const formHandler = async (formValues) => {
+
+        try {
+
+            await addNewcar(formValues);
+            navigate('/car/all');
+
+        } catch {
+            return setError(err);
+        }
+    };
+
+    const { formValues, changeHandler, submitHandler } = useForm(initialValues, formHandler);
+
 
     return (
 
-        <div className="form-container">
+        <div style={{
+            display: 'block',
+            width: 700,
+            padding: 30,
+            margin:'0 auto'
+        }}>
 
-            <h1 className="add-title text-center">Добави кола</h1>
 
-            <form className="add-form" method="post">
+            <h2 className={styles['form-title']}>Add New Car</h2>
 
 
-                <div className="row mb-3 justify-content-center">
-                    <div className="col-sm-10 col-md-12">
-                        <label className="text-label" htmlFor="firstName">
-                            Име
-                        </label>
-                        <input
+            {error && (
+                <p>{error}</p>
+            )}
 
-                            className="form-control"
-                            aria-required="true"
-                            id="firstName"
-                        />
+            <Form onSubmit={submitHandler} className={styles['car-form']}>
 
-                    </div>
-                </div>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label className={styles['form-label']}>Name</Form.Label>
+                    <Form.Control type="text" value={formValues.name} name="name" onChange={changeHandler} />
+                </Form.Group>
 
-                <div className="row mb-3 justify-content-center">
-                    <div className="col-sm-10 col-md-12">
-                        <label className="text-label" htmlFor="imageUrl">
-                            Изображение
-                        </label>
-                        <input
 
-                            className="form-control"
-                            aria-required="true"
-                            id="imageUrl"
-                        />
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label className={styles['form-label']}>Image URL</Form.Label>
+                    <Form.Control type="text" value={formValues.imageUrl} name="imageUrl" onChange={changeHandler} />
+                </Form.Group>
 
-                    </div>
-                </div>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label className={styles['form-label']}>Description</Form.Label>
+                    <Form.Control type="text" value={formValues.description} name="description" onChange={changeHandler} />
+                </Form.Group>
 
-                <div className="row mb-3 justify-content-center">
-                    <div className="col-sm-10 col-md-12">
-                        <label className="text-label" htmlFor="otherInfo">
-                            Описание
-                        </label>
-                        <textarea
-
-                            className="form-control"
-                            aria-required="true"
-                            id="otherInfo"
-
-                        />
-
-                    </div>
-                </div>
-
-                <div className="row mb-3 justify-content-center">
-                    <div className="col-md-8">
-
-                        <button
-                            type="submit"
-                            className="w-100 btn submit-btn btn-primary"
-                        >
-                            Изпрати
-                        </button>
-
-                    </div>
-                </div>
-
-            </form>
+                <Button className={styles['create-btn']} variant="primary" type="submit">
+                    Create Car
+                </Button>
+            </Form>
 
         </div>
     )

@@ -24,7 +24,9 @@ export function useForm(initialValues, handler) {
         
         await handler(formValues);
         setFormValues(initialValues);
-    }
+    };
+
+    
 
     return {
         formValues,

@@ -2,11 +2,8 @@ import Row from 'react-bootstrap/Row';
 import CarCard from './car-card/CarCard';
 import styles from './CarList.module.css';
 
-import { useGetAllCars } from '../../hooks/cars-hooks';
 
-export default function CarList() {
-
-    const [cars] = useGetAllCars();
+export default function CarList({ cars }) {
 
     return (
         <>

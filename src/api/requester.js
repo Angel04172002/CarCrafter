@@ -7,7 +7,6 @@ async function requester(method, url, data) {
     };
 
 
-
     if (data) {
 
         options.headers = {

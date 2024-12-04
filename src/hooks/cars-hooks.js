@@ -17,3 +17,24 @@ export function useGetAllCars() {
 
     return [cars];
 }
+
+
+export function useFilterCars(carName) {
+
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+
+        carApi.filterCars(carName)
+            .then(result => {
+
+                setCars(result);
+            });
+    }, []);
+
+    return [cars];
+}
+
+export function useAddNewCar() {
+    return carApi.addNewCar;
+}
