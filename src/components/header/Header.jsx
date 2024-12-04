@@ -24,17 +24,22 @@ export default function Header() {
                                     Начало
                                 </Link>
                             </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link navbtn" to="/car/all">
+                                    Всички коли
+                                </Link>
+                            </li>
                             <li className="nav-item">
                                 <Link className="nav-link navbtn" to="/add-car">
                                     Добави кола
                                 </Link>
                             </li>
                         </ul>
-                
+
                     </div>
                 </div>
             </nav>
         </div>
-
     )
 }
