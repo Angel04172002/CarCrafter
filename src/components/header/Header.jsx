@@ -25,8 +25,13 @@ export default function Header() {
                                 </Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link navbtn" to="/car/all">
+                                    All Cars
+                                </Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link navbtn" to="/add-car">
-                                    Добави кола
+                                    Add car
                                 </Link>
                             </li>
                         </ul>
